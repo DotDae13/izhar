@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:izhar/components/button.dart';
 import 'package:izhar/components/text_field.dart';
@@ -13,6 +14,38 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+
+  void signIn() async {
+    showDialog
+      (context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text
+      );
+
+      if(context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      displayMessage(e.code);
+    }
+  }
+
+  void displayMessage(String message) {
+    showDialog
+      (context: context,
+      builder: (context) =>
+          AlertDialog(
+            title: Text(message),
+          ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,25 +79,25 @@ class _LoginPageState extends State<LoginPage> {
 
                 //Email TextField
                 MyTextField(
-                    controller: emailTextController,
-                    hintText: 'Email',
-                    obscureText: false,
+                  controller: emailTextController,
+                  hintText: 'Email',
+                  obscureText: false,
                 ),
 
                 const SizedBox(height: 10),
 
                 //Password TextField
                 MyTextField(
-                    controller: passwordTextController,
-                    hintText: 'Password',
-                    obscureText: true,
+                  controller: passwordTextController,
+                  hintText: 'Password',
+                  obscureText: true,
                 ),
 
                 const SizedBox(height: 10),
 
                 //SignIn Button
                 MyButton(
-                    onTap: widget.onTap,
+                    onTap: signIn,
                     text: 'Sign In'
                 ),
 
@@ -84,8 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         "Register now",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue
                         ),
 
                       ),
@@ -102,3 +135,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
