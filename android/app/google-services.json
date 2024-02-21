@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1025769792042",
+    "project_id": "izhar-657b2",
+    "storage_bucket": "izhar-657b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025769792042:android:a841617853a960c5289953",
+        "android_client_info": {
+          "package_name": "com.example.izhar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-Qj85dUxgJEN9cjRc23izJz4jq3rqGvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
