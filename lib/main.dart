@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:izhar/auth/auth.dart';
 import 'package:izhar/firebase_options.dart';
+import 'package:izhar/pages/gemini_chatbot_page.dart';
 import 'package:izhar/theme/dark_theme.dart';
 import 'package:izhar/theme/light_theme.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const AuthPage(),
+      home: const ChatbotIntegration(),
     );
   }
 }
