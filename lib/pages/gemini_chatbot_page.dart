@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -80,10 +81,23 @@ class _ChatbotIntegrationState extends State<ChatbotIntegration> {
     }
   }
 
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Emo')),
+      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        title: const Text('Izhar'),
+        actions: [
+        IconButton(
+            onPressed: signOut,
+            icon: const Icon(Icons.logout)
+        ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(

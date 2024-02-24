@@ -4,7 +4,7 @@ import 'package:izhar/auth/auth.dart';
 import 'package:izhar/firebase_options.dart';
 import 'package:izhar/pages/gemini_chatbot_page.dart';
 import 'package:izhar/theme/dark_theme.dart';
-import 'package:izhar/theme/light_theme.dart';
+import 'theme/light_theme.dart';
 
 
 void main() async{
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const ChatbotIntegration(),
+      home: const AuthPage(),
+      //home: const ChatbotIntegration(),
     );
   }
 }
