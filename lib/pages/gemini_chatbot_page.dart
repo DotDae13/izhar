@@ -12,40 +12,43 @@ import '../components/drawer.dart';
 class ChatbotIntegration extends StatefulWidget {
   const ChatbotIntegration({Key? key}) : super(key: key);
 
+
   @override
   State<ChatbotIntegration> createState() => _ChatbotIntegrationState();
 }
 
 class _ChatbotIntegrationState extends State<ChatbotIntegration> {
-  ChatUser myself = ChatUser(id: '1', firstName: 'User');
+
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  ChatUser myself = ChatUser(id: '1', firstName: FirebaseAuth.instance.currentUser!.displayName ?? 'User');
   ChatUser bot = ChatUser(id: '2', firstName: 'Emo');
   List<ChatMessage> allMessages = [];
   List<ChatUser> typing = [];
   final TextEditingController _promptController = TextEditingController();
   final TextEditingController _responseController = TextEditingController();
 
+
   final CollectionReference<Map<String, dynamic>> _firestoreCollection =
   FirebaseFirestore.instance.collection('geminiMessages');
 
-  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? _snapshotSubscription;
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? _snapshotSubscription;
+
   bool isFirstTime = true;
 
   @override
   void initState() {
     super.initState();
 
-    _snapshotSubscription = _firestoreCollection
-        .orderBy('startTime', descending: true)
-        .limit(1)
-        .snapshots()
-        .listen((snapshot) {
-      if (snapshot.docs.isNotEmpty) {
-        final data = snapshot.docs.first.data();
-        if (data['response'] != null && data['response'].isNotEmpty) {
+    String currentUserId = FirebaseAuth.instance.currentUser!.uid;
+
+    // Listen to changes in the document specific to the current user
+    _snapshotSubscription = _firestoreCollection.doc(currentUserId).snapshots().listen((snapshot) {
+      if (snapshot.exists) {
+        final data = snapshot.data();
+        if (data != null && data['response'] != null && data['response'].isNotEmpty) {
           _responseController.text = data['response'];
 
           if (!isFirstTime) {
-            // Add the Firestore response to DashChat only if it's not the first time
             ChatMessage firestoreResponse = ChatMessage(
               text: data['response'],
               user: bot,
@@ -62,19 +65,14 @@ class _ChatbotIntegrationState extends State<ChatbotIntegration> {
     });
   }
 
-  @override
-  void dispose() {
-    _snapshotSubscription?.cancel();
-    _promptController.dispose();
-    _responseController.dispose();
-    super.dispose();
-  }
-
   void sendMessageToFirestore(String prompt) async {
     try {
-      await _firestoreCollection.add({
+      String currentUserId = FirebaseAuth.instance.currentUser!.uid;
+
+      // Add the prompt and response under the document specific to the current user
+      await _firestoreCollection.doc(currentUserId).set({
         'prompt': prompt,
-        'response': '', // Add an empty response for the new prompt
+        'response': '',
         'startTime': FieldValue.serverTimestamp(),
       });
 
@@ -84,6 +82,8 @@ class _ChatbotIntegrationState extends State<ChatbotIntegration> {
       print("Error: $e");
     }
   }
+
+
 
   void signOut() {
     FirebaseAuth.instance.signOut();

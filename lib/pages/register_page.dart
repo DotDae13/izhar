@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:izhar/pages/login_page.dart';
 import '../components/button.dart';
 import '../components/text_field.dart';
 
@@ -37,6 +38,10 @@ class _RegisterPageState extends State<RegisterPage> {
           password: passwordTextController.text
       );
 
+      //await userCredential.user!.sendEmailVerification();
+
+      displayMessage("Email verification link has been sent to $emailTextController.text");
+
       FirebaseFirestore.instance
       .collection("Users")
       .doc(userCredential.user!.email!)
@@ -46,6 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       if (context.mounted) Navigator.pop(context);
+
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       displayMessage(e.code);
@@ -75,15 +81,15 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-          
+
                   //logo
                   const Icon(
                     Icons.lock,
                     size: 100,
                   ),
-          
+
                   const SizedBox(height: 50),
-          
+
                   //Welcome Message
                   Text(
                     "Let's create an account for you",
@@ -91,44 +97,44 @@ class _RegisterPageState extends State<RegisterPage> {
                         color: Colors.grey[700]
                     ),
                   ),
-          
+
                   const SizedBox(height: 25),
-          
+
                   //Email TextField
                   MyTextField(
                     controller: emailTextController,
                     hintText: 'Email',
                     obscureText: false,
                   ),
-          
+
                   const SizedBox(height: 10),
-          
+
                   //Password TextField
                   MyTextField(
                     controller: passwordTextController,
                     hintText: 'Password',
                     obscureText: true,
                   ),
-          
+
                   const SizedBox(height: 10),
-          
+
                   //Confirm Password TextField
                   MyTextField(
                     controller: confirmPasswordTextController,
                     hintText: 'Confirm Password',
                     obscureText: true,
                   ),
-          
+
                   const SizedBox(height: 10),
-          
+
                   //SignUp Button
                   MyButton(
                       onTap: signUp,
                       text: 'Sign Up'
                   ),
-          
+
                   const SizedBox(height: 25),
-          
+
                   //Go to register page
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

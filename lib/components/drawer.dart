@@ -12,7 +12,6 @@ class MyDrawer extends StatelessWidget {
     this.onProfileTap,
     this.onEmoTap,
     this.onSignOut,
-
   });
 
   @override
@@ -30,7 +29,14 @@ class MyDrawer extends StatelessWidget {
                   color: Colors.white,
                   size: 64,
                 ),
+
               ),
+
+              const Text("Developed by(IG): @not_tanwir",
+                style: TextStyle(color: Colors.white),
+              ),
+              const SizedBox(height: 5,),
+
               MyListTile(
                 icon: Icons.home,
                 text: 'H O M E',
@@ -41,22 +47,24 @@ class MyDrawer extends StatelessWidget {
                   onTap: onProfileTap
               ),
               MyListTile(icon: Icons.auto_awesome,
-                  text: 'E M O',
+                  text: 'E M O (Under development)',
                   onTap: onEmoTap
               ),
             ],
           ),
 
           Padding(
-            padding: const EdgeInsets.only(bottom: 25.0),
+            padding: const EdgeInsets.only(bottom: 5.0),
             child: MyListTile(
                 icon: Icons.logout,
                 text: 'L O G O U T',
                 onTap: onSignOut
             ),
           ),
+
         ],
       ),
+
     );
   }
 }

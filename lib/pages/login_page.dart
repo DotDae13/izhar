@@ -5,7 +5,10 @@ import 'package:izhar/components/text_field.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const LoginPage({
+    super.key,
+    this.onTap
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();

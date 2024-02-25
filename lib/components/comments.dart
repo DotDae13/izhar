@@ -28,23 +28,26 @@ class Comment extends StatelessWidget {
 
           const SizedBox(height: 5,),
 
-          Row(
-            children: [
-              Text(
-                user,
-                style: TextStyle(color: Colors.grey[400]),
-              ),
-
-              Text(
-                " • ",
-                style: TextStyle(color: Colors.grey[400]),
-              ),
-              Text(
-                time,
-                style: TextStyle(color: Colors.grey[400]),
-              ),
-            ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Text(
+                  user,
+                  style: TextStyle(color: Colors.grey[400]),
+                ),
+                Text(
+                  " • ",
+                  style: TextStyle(color: Colors.grey[400]),
+                ),
+                Text(
+                  time,
+                  style: TextStyle(color: Colors.grey[400]),
+                ),
+              ],
+            ),
           ),
+
         ],
       ),
     );

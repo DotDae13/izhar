@@ -126,23 +126,27 @@ class _WallPostState extends State<WallPost> {
               const SizedBox(height: 5),
 
               //user
-              Row(
-                children: [
-                  Text(
-                    widget.user,
-                    style: TextStyle(color: Colors.grey[400]),
-                  ),
-
-                  Text(
-                    " • ",
-                    style: TextStyle(color: Colors.grey[400]),
-                  ),
-                  Text(
-                    widget.time,
-                    style: TextStyle(color: Colors.grey[400]),
-                  ),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Text(
+                      widget.user,
+                      style: TextStyle(color: Colors.grey[400]),
+                    ),
+                    Text(
+                      " • ",
+                      style: TextStyle(color: Colors.grey[400]),
+                    ),
+                    Text(
+                      widget.time,
+                      style: TextStyle(color: Colors.grey[400]),
+                    ),
+                  ],
+                ),
               ),
+
+
             ],
           ),
 
