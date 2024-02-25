@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:izhar/components/drawer.dart';
 import 'package:izhar/components/text_field.dart';
 import 'package:izhar/components/wall_post.dart';
+import 'package:izhar/helper/helper_methods.dart';
+import 'package:izhar/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -40,17 +43,35 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void goToProfilePage() {
+    Navigator.pop(context);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const ProfilePage(),
+      ),
+    );
+
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(title: const Text("Izhar"),
-        actions: [
+        /**actions: [
           IconButton(
               onPressed: signOut,
               icon: const Icon(Icons.logout)
           ),
-        ],
+        ],**/
+      ),
+      drawer: MyDrawer(
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
       ),
       body: Center(
         child: Column(
@@ -75,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                           user: post['UserEmail'],
                           postId: post.id,
                           likes: List<String>.from(post['Likes'] ?? []),
+                          time: formatDate(post['TimeStamp']),
                            );
                         },
                     );

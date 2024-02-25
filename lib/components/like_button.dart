@@ -3,7 +3,11 @@ class LikeButton extends StatelessWidget {
 final bool isLiked;
 void Function()? onTap;
 
-LikeButton({super.key, required this.isLiked, required this.onTap});
+LikeButton({
+  super.key,
+  required this.isLiked,
+  required this.onTap
+});
 
 @override
 
