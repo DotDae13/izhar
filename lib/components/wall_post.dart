@@ -18,6 +18,7 @@ class WallPost extends StatefulWidget {
     required this.time,
     required this.postId,
     required this.likes,
+
   });
 
   @override
@@ -176,7 +177,7 @@ class _WallPostState extends State<WallPost> {
 
                   const SizedBox(height: 5),
                   const Text(
-                    '0',
+                    '',
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
