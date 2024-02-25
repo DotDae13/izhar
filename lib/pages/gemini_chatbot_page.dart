@@ -86,6 +86,7 @@ class _ChatbotIntegrationState extends State<ChatbotIntegration> {
 
 
   void signOut() {
+    Navigator.pop(context);
     FirebaseAuth.instance.signOut();
   }
 

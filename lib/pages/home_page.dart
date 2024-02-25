@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   //SignOut
   void signOut() {
+    //Navigator.pop(context);
     FirebaseAuth.instance.signOut();
   }
 
@@ -47,7 +48,6 @@ class _HomePageState extends State<HomePage> {
 
   void goToProfilePage() {
     Navigator.pop(context);
-
     Navigator.push(
       context,
       MaterialPageRoute(

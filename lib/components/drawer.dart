@@ -32,9 +32,9 @@ class MyDrawer extends StatelessWidget {
 
               ),
 
-              /**const Text("Developed by(IG): @not_tanwir",
+              const Text("Developed by(IG): @not_tanwir",
                 style: TextStyle(color: Colors.white),
-              ),**/
+              ),
               const SizedBox(height: 5,),
 
               MyListTile(
@@ -48,7 +48,7 @@ class MyDrawer extends StatelessWidget {
               ),
               MyListTile(icon: Icons.auto_awesome,
                   text: 'E M O (Under development)',
-                  onTap: onEmoTap
+                  onTap: onEmoTap,
               ),
             ],
           ),
@@ -58,7 +58,7 @@ class MyDrawer extends StatelessWidget {
             child: MyListTile(
                 icon: Icons.logout,
                 text: 'L O G O U T',
-                onTap: onSignOut
+                onTap: onSignOut,
             ),
           ),
 

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:izhar/pages/login_page.dart';
 import '../components/button.dart';
 import '../components/text_field.dart';
 
