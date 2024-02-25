@@ -7,6 +7,8 @@ import 'package:izhar/components/wall_post.dart';
 import 'package:izhar/helper/helper_methods.dart';
 import 'package:izhar/pages/profile_page.dart';
 
+import 'gemini_chatbot_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key
@@ -52,9 +54,14 @@ class _HomePageState extends State<HomePage> {
           builder: (context) => const ProfilePage(),
       ),
     );
+  }
 
-
-
+  void goToGeminiScreen() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ChatbotIntegration()),
+    );
   }
 
   @override
@@ -64,13 +71,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text("Izhar"),
         /**actions: [
           IconButton(
-              onPressed: signOut,
-              icon: const Icon(Icons.logout)
+              onPressed: goToGeminiScreen,
+              icon: const Icon(Icons.chat_bubble_outline)
           ),
         ],**/
       ),
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,
+        onEmoTap: goToGeminiScreen,
         onSignOut: signOut,
       ),
       body: Center(

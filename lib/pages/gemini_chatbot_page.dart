@@ -4,6 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:izhar/pages/home_page.dart';
+import 'package:izhar/pages/profile_page.dart';
+
+import '../components/drawer.dart';
 
 class ChatbotIntegration extends StatefulWidget {
   const ChatbotIntegration({Key? key}) : super(key: key);
@@ -14,7 +18,7 @@ class ChatbotIntegration extends StatefulWidget {
 
 class _ChatbotIntegrationState extends State<ChatbotIntegration> {
   ChatUser myself = ChatUser(id: '1', firstName: 'User');
-  ChatUser bot = ChatUser(id: '2', firstName: 'Izhar');
+  ChatUser bot = ChatUser(id: '2', firstName: 'Emo');
   List<ChatMessage> allMessages = [];
   List<ChatUser> typing = [];
   final TextEditingController _promptController = TextEditingController();
@@ -85,18 +89,43 @@ class _ChatbotIntegrationState extends State<ChatbotIntegration> {
     FirebaseAuth.instance.signOut();
   }
 
+  void goToProfilePage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }
+
+  void goToHomePage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.greenAccent,
       appBar: AppBar(
-        title: const Text('Izhar'),
+        title: const Text('E M O'),
         actions: [
         IconButton(
             onPressed: signOut,
             icon: const Icon(Icons.logout)
         ),
         ],
+      ),
+      drawer: MyDrawer(
+        onHomeTap: goToHomePage,
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
       ),
       body: Column(
         children: [

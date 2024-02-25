@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:izhar/components/my_list_tile.dart';
 
 class MyDrawer extends StatelessWidget {
+  final void Function()? onHomeTap;
   final void Function()? onProfileTap;
+  final void Function()? onEmoTap;
   final void Function()? onSignOut;
   const MyDrawer({
     super.key,
+    this.onHomeTap,
     this.onProfileTap,
+    this.onEmoTap,
     this.onSignOut,
+
   });
 
   @override
@@ -29,11 +34,15 @@ class MyDrawer extends StatelessWidget {
               MyListTile(
                 icon: Icons.home,
                 text: 'H O M E',
-                onTap: () => Navigator.pop(context),
+                onTap: onHomeTap,
               ),
               MyListTile(icon: Icons.person,
                   text: 'P R O F I L E',
                   onTap: onProfileTap
+              ),
+              MyListTile(icon: Icons.auto_awesome,
+                  text: 'E M O',
+                  onTap: onEmoTap
               ),
             ],
           ),
