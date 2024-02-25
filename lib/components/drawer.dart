@@ -32,9 +32,9 @@ class MyDrawer extends StatelessWidget {
 
               ),
 
-              const Text("Developed by(IG): @not_tanwir",
+              /**const Text("Developed by(IG): @not_tanwir",
                 style: TextStyle(color: Colors.white),
-              ),
+              ),**/
               const SizedBox(height: 5,),
 
               MyListTile(
