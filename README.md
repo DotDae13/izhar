@@ -3,7 +3,12 @@ Welcome to Izhar, your go-to app for sharing your thoughts in a minimalist and e
 **Getting Started**
 To get started with Izhar, follow these simple steps:
 
-**Installation:** Download the zip file or clone the repository from the github Dotdae13\izhar. Connect your Android device with USB Debugging enabled, then run main.dart in the Android Studio and wait for the installation
+**Installation:** 
+Download the zip file or clone the repository from the github Dotdae13\izhar. Connect your Android device with USB Debugging enabled, then run main.dart in the Android Studio and wait for the installation
+
+                                            OR
+
+Install the izhar.apk present in the root directory
 
 **Account Creation:** Upon opening the app, you'll be prompted to create an account. Simply provide the required information, including your email, and password, to set up your Izhar profile.
 
